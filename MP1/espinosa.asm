@@ -14,10 +14,15 @@ _start:
 
     mov eax, 4
     mov ebx, 1
+
+    ; Push 10( newline(\n) 
     push 10;
     mov ecx, esp
     mov edx,1 
     int 80h
+
+
+
 
     ; Print 'S' character 
     mov   eax, 4      ; set assembler to write
@@ -34,6 +39,10 @@ _start:
     mov ecx, esp
     mov edx,1 
     int 80h
+
+
+
+
 
     ; Print 'P' character 
     mov   eax, 4      ; set assembler to write
@@ -51,6 +60,10 @@ _start:
     mov edx,1 
     int 80h
 
+
+
+
+
     ; Print 'I' character 
     mov   eax, 4      ; set assembler to write
     mov   ebx, 1      ; stdout fileno
@@ -66,6 +79,10 @@ _start:
     mov ecx, esp
     mov edx,1 
     int 80h
+
+
+
+
 
     ; Print 'N' character 
     mov   eax, 4      ; set assembler to write
@@ -83,6 +100,10 @@ _start:
     mov edx,1 
     int 80h
 
+
+
+
+
     ; Print 'O' character 
     mov   eax, 4      ; set assembler to write
     mov   ebx, 1      ; stdout fileno
@@ -99,6 +120,10 @@ _start:
     mov edx,1 
     int 80h
 
+
+
+
+
     ; Print 'S' character 
     mov   eax, 4      ; set assembler to write
     mov   ebx, 1      ; stdout fileno
@@ -114,6 +139,8 @@ _start:
     mov ecx, esp
     mov edx,1 
     int 80h
+
+
 
     ; Print 'A' character 
     mov   eax, 4      ; set assembler to write
