@@ -13,8 +13,7 @@ section .text
     global _start
 
 _start:
-    
-    mov eax, 4     
+   mov eax, 4     
     mov ebx, 1      
     mov ecx, input_user  
     mov edx, 20      
@@ -25,12 +24,54 @@ _start:
     mov edx, 20      
     int 0x80         
 
-   ;not finish yet
+   mov esi, password  
+   mov edi, esi
+   xor ecx, ecx      
+
+check_length_loop:
+    cmp byte [edi], 0 
+    je end_check_length
+    inc ecx          
+    inc edi           
+    jmp check_length_loop
+
+end_check_length:
+    cmp ecx, 1        
+    jg check_strength 
+    mov eax, 4        
+    mov ebx, 1        
+    mov ecx, invalid_msg  
+    mov edx, 36       
+    int 0x80          
+    
+   
+    jmp exit_program
+
+
+check_strength:
+    cmp ecx, 8       
+    jl weak_password  
+    mov eax, 4       
+    mov ebx, 1        
+    mov ecx, strong_msg 
+    mov edx, 16      
+    int 0x80          
+    
+    
+    jmp exit_program
+
+
+weak_password:
+    mov eax, 4        
+    mov ebx, 1        
+    mov ecx, weak_msg 
+    mov edx, 14       
+    int 0x80          
 
 exit_program:
-    mov eax, 1        ; sys_exit syscall number
-    xor ebx, ebx      ; return status 0
-    int 0x80          ; invoke syscall      
+    mov eax, 1        
+    xor ebx, ebx      
+    int 0x80   
 
 
 ;sudo apt-get update
